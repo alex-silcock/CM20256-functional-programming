@@ -6,7 +6,6 @@ square x = x * x
 pythagoras :: (Eq a, Num a) => a -> a -> a -> Bool
 pythagoras a b c = a*a + b*b == c*c
 
-
 ------------------------- Exercise 2
 
 factorial :: Int -> Int
@@ -20,7 +19,6 @@ euclid x y
     | x == y          = x
     | x <  y          = euclid x (y-x)
     | x >  y          = euclid y (x-y)
-
 
 power :: Int -> Int -> Int
 power x y
