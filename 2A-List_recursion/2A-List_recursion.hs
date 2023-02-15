@@ -6,14 +6,14 @@ gentlemen = ["Charles","Fitzwilliam","George","William"]
 ------------------------- Exercise 1
 
 member :: [String] -> String -> Bool
-member    []  _ = undefined
+member    []  _ = False
 member (x:xs) y
-    | x == y    = undefined
-    | otherwise = undefined
+    | x == y    = True
+    | otherwise = member xs y
 
 member' :: [String] -> String -> Bool
-member'    []  _ = undefined  
-member' (x:xs) y = undefined
+member'    []  _ = False  
+member' (x:xs) y = x == y || member' xs y
 
 remove :: [String] -> String -> [String]
 remove = undefined
