@@ -16,7 +16,10 @@ member'    []  _ = False
 member' (x:xs) y = x == y || member' xs y
 
 remove :: [String] -> String -> [String]
-remove = undefined
+remove [] _ = []
+remove (x:xs) y
+    | x == y = remove xs y
+    | otherwise = x : remove xs y
 
 
 ------------------------- Exercise 2
