@@ -1,5 +1,3 @@
-
-
 ladies    = ["Mary","Kitty","Lydia","Elizabeth","Jane"]
 gentlemen = ["Charles","Fitzwilliam","George","William"]
 
