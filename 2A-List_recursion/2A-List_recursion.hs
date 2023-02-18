@@ -12,7 +12,7 @@ member (x:xs) y
     | otherwise = member xs y
 
 member' :: [String] -> String -> Bool
-member'    []  _ = False  
+member'    []  _ = False
 member' (x:xs) y = x == y || member' xs y
 
 remove :: [String] -> String -> [String]
@@ -44,12 +44,17 @@ removeAll (x:xs) (y:ys) = removeAll (remove (x:xs) y) ys
 ------------------------- Exercise 3
 
 before :: [Char] -> [Char] -> Bool
-before _ [] = undefined
-before [] _ = undefined
-before (x:xs) (y:ys) = undefined
+before [] _ = False
+before _ [] = True
+before (x:xs) (y:ys)
+    | x < y = True
+    | x == y = before xs ys
+    | otherwise = False
 
 before' :: [Char] -> [Char] -> Bool
-before' = undefined
+before' (x:xs) (y:ys) = (x < y) || (x /= y && before' xs ys)
 
 sorted :: [String] -> Bool
-sorted = undefined
+sorted [] = True
+sorted [x] = True
+sorted (x:y:xs) = (x <= y) && sorted (y:xs)
