@@ -26,16 +26,18 @@ find s ((x,y):xs)
   | otherwise = find s xs
 
 which :: Eq a => a -> [a] -> Int
-which s (x:xs) = aux 0 s (x:xs)
+which s (x:xs)    = aux 0 s (x:xs)
   where
     aux :: Eq a => Int -> a -> [a] -> Int
-    aux _ s [] = error "empty list"
+    aux _ s []    = error "empty list"
     aux index s (x:xs)
-      | s == x = index
+      | s == x    = index
       | otherwise = aux (index+1) s xs
 
 sorted :: Ord a => [a] -> Bool
-sorted = undefined
+sorted [] = True
+sorted [x] = True
+sorted (x:y:xs) = (x<=y) && sorted (y:xs)
 
 ------------------------- Exercise 2b
 -- Making member, remove and before from Tutorial 2A
@@ -50,28 +52,38 @@ member (x:xs) y
     | otherwise = member xs y
 
 remove :: Eq a => [a] -> a -> [a]
-remove [] _ = []
+remove [] _     = []
 remove (x:xs) y
-    | x == y = remove xs y
+    | x == y    = remove xs y
     | otherwise = x : remove xs y
 
 before :: Ord a => [a] -> [a] -> Bool
-before [] _ = False
-before _ [] = True
+before [] _     = False
+before _ []     = True
 before (x:xs) (y:ys)
-    | x < y = True
-    | x == y = before xs ys
+    | x < y     = True
+    | x == y    = before xs ys
     | otherwise = False
 
 ------------------------- Exercise 3
 
 merge :: Ord a => [a] -> [a] -> [a]
-merge xs [] = undefined
-merge [] ys = undefined
-merge (x:xs) (y:ys) = undefined
+merge xs []   = xs
+merge [] ys   = ys
+merge (x:xs) (y:ys)
+  | x < y     = x : merge xs (y:ys)
+  | x == y    = x : merge xs ys
+  | otherwise = y : merge (x:xs) ys
 
 minus :: Ord a => [a] -> [a] -> [a]
-minus = undefined
+minus xs []         = xs
+minus [] _          = []
+minus (x:xs) (y:ys)
+  | x `elem` (y:ys) = minus xs ys
+  | otherwise       = x : minus xs (y:ys)
 
 msort :: Ord a => [a] -> [a]
-msort = undefined
+msort [] = []
+msort (x:xs)
+  | null xs = [x]
+  | otherwise = merge (msort (take (length (x:xs) `div` 2) (x:xs))) (msort (drop (length (x:xs) `div` 2) (x:xs)))
