@@ -83,7 +83,7 @@ minus (x:xs) (y:ys)
   | otherwise       = x : minus xs (y:ys)
 
 msort :: Ord a => [a] -> [a]
-msort [] = []
+msort []      = []
 msort (x:xs)
-  | null xs = [x]
+  | null xs   = [x]
   | otherwise = merge (msort (take (length (x:xs) `div` 2) (x:xs))) (msort (drop (length (x:xs) `div` 2) (x:xs)))
