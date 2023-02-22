@@ -87,3 +87,14 @@ msort []      = []
 msort (x:xs)
   | null xs   = [x]
   | otherwise = merge (msort (take (length (x:xs) `div` 2) (x:xs))) (msort (drop (length (x:xs) `div` 2) (x:xs)))
+
+msort' :: Ord a => [a] -> [a]
+msort' []     = []
+msort' (x:xs)
+  | null xs   = [x]
+  | otherwise = merge (msort left) (msort right)
+  where
+    left      = take splitAt (x:xs)
+    right     = drop splitAt (x:xs)
+    splitAt   = length (x:xs) `div` 2
+    
