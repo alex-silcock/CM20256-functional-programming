@@ -30,13 +30,15 @@ doubleodds' (x:xs)
 ------------------------- Exercise 2
 
 shorts :: [String] -> [String]
-shorts = undefined
+shorts = filter lessThan5
+    where lessThan5 s = length s <= 5
 
 squarePositives :: [Int] -> [Int]
-squarePositives = undefined
+squarePositives xs = map (^2) (filter (>0) xs)
 
 oddLengthSums :: [[Int]] -> [Int]
-oddLengthSums = undefined
+oddLengthSums xs = map sum (filter oddLength xs)
+    where oddLength ys = odd (length ys)
 
 
 ------------------------- Exercise 3
