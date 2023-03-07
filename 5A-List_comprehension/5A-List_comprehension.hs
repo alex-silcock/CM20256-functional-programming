@@ -25,27 +25,25 @@ removeAll :: Eq a => [a] -> [a] -> [a]
 removeAll xs ys = [ n | n <- xs, n `notElem` xs || n `notElem` ys]
 
 everyother :: [a] -> [a]
-everyother xs = [ snd n | n <- zip[1..] xs, odd (fst n)]
+everyother xs = [ snd n | n <- zip [1..] xs, odd (fst n)]
 
 same :: Eq a => [a] -> [a] -> [Int]
-same xs ys = [ fst n | n <- zip[1..] (zipWith (==) xs ys), snd n ]
+same xs ys = [ fst n | n <- zip [1..] (zipWith (==) xs ys), snd n ]
 
 same' :: Eq a => [a] -> [a] -> [Int]
 same' xs ys = [ first n | n <- zip3 [1..] xs ys, second n == third n ]
     where
         first (a, _, _) = a
-        second (_, a, _) = a 
+        second (_, a, _) = a
         third (_, _, a) = a
-
 
 ------------------------- Exercise 2
 
 pairs :: [a] -> [b] -> [(a,b)]
-pairs = undefined
+pairs xs ys = [(a, b) | a <- xs, b <- ys]
 
 selfpairs :: [a] -> [(a,a)]
-selfpairs = undefined
+selfpairs xs = [(xs !! a, b) | (a, x) <- zip [0..] xs, b <- drop a xs]
 
 pyts :: Int -> [(Int,Int,Int)]
-pyts = undefined
-
+pyts n = [(a, b, c) | c <- [1..n], b <- [1..c-1], a <- [1..b-1], a^2 + b^2 == c^2]
