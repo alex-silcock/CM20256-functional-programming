@@ -1,34 +1,41 @@
 ------------------------- Exercise 1
 
 doubles :: [Int] -> [Int]
-doubles = undefined
+doubles xs = [ 2 * n | n <- xs ]
 
 odds :: [Int] -> [Int]
-odds = undefined
+odds xs = [ n | n <- xs, odd n ]
 
 doubleodds :: [Int] -> [Int]
-doubleodds = undefined
+doubleodds xs = [ 2 * n | n <- xs, odd n ]
 
 shorts :: [String] -> [String]
-shorts = undefined
+shorts xs = [ n | n <- xs, length n <= 5 ]
 
 squarePositives :: [Int] -> [Int]
-squarePositives = undefined
+squarePositives xs = [ n * n | n <- xs, n > 0 ]
 
 oddLengthSums :: [[Int]] -> [Int]
-oddLengthSums = undefined
+oddLengthSums xs = [ sum n | n <- xs, odd (length n) ]
 
 remove :: Eq a => [a] -> a -> [a]
-remove = undefined
+remove xs x = [ n | n <- xs, n /= x]
 
 removeAll :: Eq a => [a] -> [a] -> [a]
-removeAll = undefined
+removeAll xs ys = [ n | n <- xs, n `notElem` xs || n `notElem` ys]
 
 everyother :: [a] -> [a]
-everyother = undefined
+everyother xs = [ snd n | n <- zip[1..] xs, odd (fst n)]
 
 same :: Eq a => [a] -> [a] -> [Int]
-same = undefined
+same xs ys = [ fst n | n <- zip[1..] (zipWith (==) xs ys), snd n ]
+
+same' :: Eq a => [a] -> [a] -> [Int]
+same' xs ys = [ first n | n <- zip3 [1..] xs ys, second n == third n ]
+    where
+        first (a, _, _) = a
+        second (_, a, _) = a 
+        third (_, _, a) = a
 
 
 ------------------------- Exercise 2
