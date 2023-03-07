@@ -42,6 +42,9 @@ same' xs ys = [ first n | n <- zip3 [1..] xs ys, second n == third n ]
 pairs :: [a] -> [b] -> [(a,b)]
 pairs xs ys = [(a, b) | a <- xs, b <- ys]
 
+applies :: [a -> b] -> [a] -> [b]
+applies fs xs = [f x | f <- fs, x <- xs]
+
 selfpairs :: [a] -> [(a,a)]
 selfpairs xs = [(xs !! a, b) | (a, x) <- zip [0..] xs, b <- drop a xs]
 
