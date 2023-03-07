@@ -44,16 +44,16 @@ oddLengthSums xs = map sum (filter oddLength xs)
 ------------------------- Exercise 3
 
 remove :: Eq a => [a] -> a -> [a]
-remove = undefined
+remove string c = filter (/= c) string
 
 removeAll :: Eq a => [a] -> [a] -> [a]
-removeAll = undefined
+removeAll str1 str2 = filter (`notElem` str2) str1
 
 numbered :: [a] -> [(Int,a)]
-numbered = undefined
+numbered = zip [1..]
 
 everyother :: [a] -> [a]
-everyother = undefined
+everyother xs = map snd (filter (odd . fst) (numbered xs))
 
 same :: Eq a => [a] -> [a] -> [Int]
-same = undefined
+same xs ys = map fst (filter snd (numbered (zipWith (==) xs ys)))
