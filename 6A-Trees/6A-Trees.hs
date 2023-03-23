@@ -20,11 +20,8 @@ height Empty               = 0
 height (Node x left right) = 1 + max (height left) (height right)
 
 member :: Int -> IntTree -> Bool
-member x Empty = False
-member x (Node y left right)
-  | x == y     = True
-  | x < y      = member x left
-  | otherwise  = member x right
+member x Empty               = False
+member x (Node y left right) = member x left || x == y || member x right
 
 paths :: Int -> IntTree -> [[Int]]
 paths x Empty = []
