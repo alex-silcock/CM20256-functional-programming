@@ -13,6 +13,7 @@ instance Show IntTree where
           ['+':'-':show x] ++ 
           [ d:' ':n | n <- aux '|' ' ' t ]
 -}
+
 isEmpty :: Tree a -> Bool
 isEmpty Empty = True
 isEmpty _     = False
@@ -144,7 +145,6 @@ free (Variable x) = [x]
 free (Lambda x n) = free n `minus` [x]
 free (Apply  n m) = free n `merge` free m
 
-
 ------------------------- Exercise 3
 
 numeral :: Int -> Term
@@ -165,7 +165,6 @@ removeAll xs ys = [ x | x <- xs , x `notElem` ys ]
 fresh :: [Var] -> Var
 fresh = head . removeAll variables
 
-
 rename :: Var -> Var -> Term -> Term
 rename x y (Variable z)
     | z == x    = Variable y
@@ -174,7 +173,6 @@ rename x y (Lambda z n)
     | z == x    = Lambda z n
     | otherwise = Lambda z (rename x y n)
 rename x y (Apply n m) = Apply (rename x y n) (rename x y m)
-
 
 substitute :: Var -> Term -> Term -> Term
 substitute x n (Variable y)
