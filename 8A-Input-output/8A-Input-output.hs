@@ -4,19 +4,42 @@ import System.Random
 ------------------------- Exercise 1
 
 repeatMe :: IO ()
-repeatMe = undefined
-
+repeatMe = do
+  s <- getLine
+  putStr "You just told me: "
+  putStrLn s
 
 ------------------------- Exercise 2
 
 lizzy :: IO ()
-lizzy = undefined
+lizzy = do
+  putStrLn welcome
+  lizzyLoop
 
 lizzyLoop :: IO ()
-lizzyLoop = undefined
-
+lizzyLoop = do
+  str <- getLine
+  r <- randomIO :: IO Int
+  putStrLn (randomresponse str r)
+  lizzyLoop
 
 ------------------------- Exercise 3
+
+lizzy' :: IO ()
+lizzy' = do
+  putStrLn welcome
+  lizzyLoop'
+
+lizzyLoop' :: IO ()
+lizzyLoop' = do
+  str <- getLine
+  if str == "Exit"
+  then do
+    putStrLn exit
+  else do
+    r <- randomIO :: IO Int
+    putStrLn (randomresponse str r)
+    lizzyLoop'
 
 -------------------------
 
