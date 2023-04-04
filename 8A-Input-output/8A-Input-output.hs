@@ -201,9 +201,21 @@ substitute x n (Apply m p) = Apply (substitute x n m) (substitute x n p)
 
 
 beta :: Term -> [Term]
-beta = undefined
+beta (Apply (Lambda x m) n) =
+  [substitute x n m] ++
+  [Apply (Lambda x m') n  | m' <- beta m] ++
+  [Apply (Lambda x m ) n' | n' <- beta n]
+beta (Variable _) = []
+beta (Lambda x m) = [Lambda x m' | m' <- beta m]
+beta (Apply  m n) =
+  [Apply m' n  | m' <- beta m] ++
+  [Apply m  n' | n' <- beta n]
 
 normalize :: Term -> IO ()
-normalize = undefined
-
-
+normalize m = do
+  print m
+  let ms = beta m
+  if null ms then
+    return ()
+  else
+    normalize (head ms)
