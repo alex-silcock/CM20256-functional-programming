@@ -21,7 +21,7 @@ ws :: [String]
 ws = ["Smoke","me","a","kipper","I'll","be","back","for","breakfast"]
 
 longestLength :: [[a]] -> Int
-longestLength []     = 0
+longestLength [x]    = length x
 longestLength (x:xs) = max (length x) (longestLength xs)
 
 longestLength' :: [[a]] -> Int
