@@ -49,9 +49,10 @@ fs :: [String]
 fs = ["Fish","for","breakfast","??"]
 
 shortFWords :: [String] -> Bool
+shortFWords [] = False
 shortFWords (x:xs)
-    | head x == 'F' = True
-    | otherwise     = shortFWords xs
+    | length x == 4 && head x == 'F' = True
+    | otherwise                      = shortFWords xs
 
 shortFWords' :: [String] -> Bool
 shortFWords' xs = 'F' `elem` ([head x | x <- xs])
