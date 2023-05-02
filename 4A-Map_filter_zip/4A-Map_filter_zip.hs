@@ -53,7 +53,7 @@ numbered :: [a] -> [(Int,a)]
 numbered = zip [1..]
 
 everyother :: [a] -> [a]
-everyother xs = map snd (filter (odd . fst) (numbered xs))
+everyother s = map snd $ filter (odd . fst) $ numbered s
 
 same :: Eq a => [a] -> [a] -> [Int]
-same xs ys = map fst (filter snd (numbered (zipWith (==) xs ys)))
+same s1 s2 = map fst $ filter snd $ numbered $ zipWith (==) s1 s2
